@@ -28,8 +28,8 @@ public class TabellStabel<T> implements StabelADT<T> {
 	}
 
 	/*******************************************************************
-	 * Legger til det spesifiserte elementet p� toppen av stabelen, utvider
-	 * kapasiteten til stabelen hvis n�dvendig.
+	 * Legger til det spesifiserte elementet på toppen av stabelen, utvider
+	 * kapasiteten til stabelen hvis nødvendig.
 	 *******************************************************************/
 	@Override
 	public void push(T element) {
@@ -39,11 +39,15 @@ public class TabellStabel<T> implements StabelADT<T> {
 		stabel[topp] = element;
 
 	}
-
+	/*******************************************************************
+	 * 
+	 * Fjerner toppelementet og returnereret referansen. Hvis stabelen tom fra før,
+	 * kastes unntak
+	 *******************************************************************/
 	@Override
-	public T pop() {
+	public T pop() throws EmptyCollectionException {
 		if (erTom()) {
-			throw new EmtpyCollectionExeption("Stabel");
+			throw new EmptyCollectionException("Stabel");
 		}
 		T resultat = stabel[topp];
 		stabel[topp] = null;
@@ -52,16 +56,15 @@ public class TabellStabel<T> implements StabelADT<T> {
 	}
 
 	/*******************************************************************
-	 * Returnerer toppelementet uten � fjerne det. Hvis stabelen er tom fra f�r,
+	 * Returnerer toppelementet uten å fjerne det. Hvis stabelen er tom fra før,
 	 * returneres null-ref.
 	 *******************************************************************/
 	@Override
-	public T peek() {
+	public T peek()  throws EmptyCollectionException {
 		if (erTom())
 			throw new EmptyCollectionException("Stabel");
 
-		// TODO
-		return null;
+		return stabel[topp - 1];
 	}
 
 	/*******************************************************************
@@ -69,17 +72,17 @@ public class TabellStabel<T> implements StabelADT<T> {
 	 *******************************************************************/
 	@Override
 	public boolean erTom() {
-		return (topp < 0);
+		return (topp == 0);
 	}
 
 	/*******************************************************************
-	 * Oppretter en ny tabell for � lagre innholdet.
+	 * Oppretter en ny tabell for å lagre innholdet.
 	 *******************************************************************/
 	private void utvid() {
 		T[] hjelpeTabell = (T[]) (new Object[stabel.length * 2]);
 
-		for (int indeks = 0; indeks < stabel.length; indeks++)
-			hjelpeTabell[indeks] = stabel[indeks];
+		for (int i = 0; i < stabel.length; i++)
+			hjelpeTabell[i] = stabel[i];
 
 		stabel = hjelpeTabell;
 	}
