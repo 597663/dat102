@@ -103,8 +103,8 @@ public class TabellMengde<T> implements MengdeADT<T> {
 	}
 	
 	/*
-	 * N�r vi overkj�rer (override) equals- meteoden er det anbefalt at vi ogs�
-	 * overkj�rer hascode-metoden da en del biblioterker burker hascode sammen med
+	 * N�r vi overkjører (override) equals- meteoden er det anbefalt at vi også
+	 * overkjører hascode-metoden da en del biblioterker burker hascode sammen med
 	 * equals. Vi kommer tilbake til forklaring og bruk av hascode senere i faget.
 	 */
 	@Override
