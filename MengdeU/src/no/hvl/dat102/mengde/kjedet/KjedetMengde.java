@@ -34,7 +34,7 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 
 	@Override
 	public void leggTilAlle(MengdeADT<T> m2) {
-		Iterator<T> teller = m2.oppramser();
+		Iterator<T> teller = m2.iterator();
 		while (teller.hasNext()) {
 			leggTil(teller.next());
 		}
@@ -80,7 +80,7 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 			resultat = start.getElement();
 			start = start.getNeste();
 			antall--;
-		} else {// Gjennomgår den kjedete strukturen
+		} else {// Gjennomgï¿½r den kjedete strukturen
 			forgjenger = start;
 			aktuell = start.getNeste();
 			for (int sok = 2; sok <= antall && !funnet; sok++) {
@@ -114,8 +114,8 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 		return funnet;
 	}
 	/*
-	 * Når vi overkjører (ovverride) equals- meteoden er det anbefalt at vi også
-	 * overkjører hashcode-metoden da en del biblioteker bruker hascode sammen med
+	 * Nï¿½r vi overkjï¿½rer (ovverride) equals- meteoden er det anbefalt at vi ogsï¿½
+	 * overkjï¿½rer hashcode-metoden da en del biblioteker bruker hascode sammen med
 	 * equals. Vi kommer tilbake til forklaring og bruk av hashcode senere i faget.
 	 */
 
@@ -146,7 +146,7 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 				likeMengder = false;
 			} else {
 				likeMengder = true;
-				Iterator<T> teller = m2.oppramser();
+				Iterator<T> teller = m2.iterator();
 				while (teller.hasNext() && likeMengder) {
 					T element = teller.next();
 					if (!this.inneholder(element)) {
@@ -181,7 +181,7 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 			aktuell = aktuell.getNeste();
 		}
 
-		Iterator<T> teller = m2.oppramser();
+		Iterator<T> teller = m2.iterator();
 		while (teller.hasNext()) {
 			element = teller.next();
 			if (!this.inneholder(element)) {// tester mot "konstant" mengde
@@ -227,7 +227,7 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 	}
 
 	@Override
-	public Iterator<T> oppramser() {
+	public Iterator<T> iterator() {
 		return new KjedetIterator<T>(start);
 	}
 
