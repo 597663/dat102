@@ -16,8 +16,7 @@ public class Tekstgrensesnitt {
  } 
  
  // Skrive ut alle Filmer med en spesiell delstreng i tittelen 
- public void skrivUtFilmDelstrengITittel(FilmarkivADT filma,  
-                                                           String delstreng) { 
+ public void skrivUtFilmDelstrengITittel(FilmarkivADT filma, String delstreng) { 
   // TODO 
  } 
  

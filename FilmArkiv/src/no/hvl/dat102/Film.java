@@ -20,28 +20,28 @@ public class Film {
 //		this.sjanger = sjanger;
 	}
 	
-	public int getFilmNr() {
-		return filmNr;
+	public int getFilmNr(Film film) {
+		return film.filmNr;
 	}
 	
-	public String getFilmskaper() {
-		return filmskaper;
+	public String getFilmskaper(Film film) {
+		return film.filmskaper;
 	}
 	
-	public String getTittel() {
-		return tittel;
+	public String getTittel(Film film) {
+		return film.tittel;
 	}
 	
-	public int getAar() {
-		return aar;
+	public int getAar(Film film) {
+		return film.aar;
 	}
 	
-	public String getFilmselskap() {
-		return filmselskap;
+	public String getFilmselskar(Film film) {
+		return film.filmselskap;
 	}
 	
-//	public enum	getSjanger() {
-//		return sjanger
+//	public enum	getSjanger(Film film) {
+//		return film.sjanger
 //	}
 	
 	public void setFilmNr(int filmNr) {
@@ -68,9 +68,14 @@ public class Film {
 		this.filmselskap = filmskaper;
 	}
 
+
 //	public void	setSjanger(enum sjnager) {
 //	this.sjanger = sjanger;
 //}
+	
+	public boolean equals(Film film) { 
+		return getFilmNr(this) == getFilmNr(film);
+	}
 	
 	
 }
