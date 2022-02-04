@@ -36,6 +36,16 @@ public interface FilmarkivADT {
 	 * @return tabell med filmer som har delstreng i tittel
 	 */
 	Film[] soekTittel(String delstreng);
+	
+	/**
+	 * Søker og henter Filmer med en gitt delstreng som produsent.
+	 * 
+	 * @param delstreng som må være i produsent
+	 * @return tabell med filmer som har delstreng som produsent
+	 */	
+	
+	Film[] soekProdusent(String delstreng);
+
 
 	/**
 	 * Finner antall filmer med gitt sjanger
@@ -43,12 +53,16 @@ public interface FilmarkivADT {
 	 * @param sjanger
 	 * @return antall filmer av gitt sjanger.
 	 */
+	
+	
 	int antall(Sjanger sjanger);
 
 	/**
 	 * @return antall i arkivet
 	 */
 	int antall();
+
+	
 
 
 }
