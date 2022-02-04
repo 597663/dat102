@@ -1,14 +1,16 @@
 package no.hvl.dat102.adt;
 
 import no.hvl.dat102.Film;
+import no.hvl.dat102.Sjanger;
 
 public interface FilmarkivADT {
-	
+
 	/**
 	 * Viser en film
 	 * 
-	 * @param nr nummer på film som skal vises. Om nummeret ikke finnes, skrives en feilmelding.
-	 * @throws Exception 
+	 * @param nr nummer på film som skal vises. Om nummeret ikke finnes, skrives en
+	 *           feilmelding.
+	 * @throws Exception
 	 */
 	void visFilm(int nr) throws Exception;
 
@@ -48,7 +50,5 @@ public interface FilmarkivADT {
 	 */
 	int antall();
 
-	boolean equals(Film film);
 
-	int hashCode(Film film);
 }

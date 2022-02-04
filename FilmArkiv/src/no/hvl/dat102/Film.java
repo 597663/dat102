@@ -2,80 +2,81 @@ package no.hvl.dat102;
 
 public class Film {
 	int filmNr;
-	String filmskaper;
-	String tittel;
-	int aar;
-	String filmselskap;
-	// enum sjanger;
+	private String produsent;
+	private String tittel;
+	private int aar;
+	private String selskap;
+	private Sjanger sjanger;
 
 	public Film() {
+
 	}
 
-	public Film(int filmNr, String filmskaper, String tittel, int aar, String filmselskap) {
+	public Film(int filmNr, String produsent, String tittel, int lanseringsdato, String selskap, Sjanger sjanger) {
 		this.filmNr = filmNr;
-		this.filmskaper = filmskaper;
-		this.tittel= tittel;
-		this.aar = aar;
-		this.filmselskap = filmskaper;
-//		this.sjanger = sjanger;
+		this.produsent = produsent;
+		this.tittel = tittel;
+		this.aar = lanseringsdato;
+		this.selskap = selskap;
+		this.sjanger = sjanger;
 	}
-	
-	public int getFilmNr(Film film) {
-		return film.filmNr;
+
+	public int getFilmNr() {
+		return filmNr;
 	}
-	
-	public String getFilmskaper(Film film) {
-		return film.filmskaper;
+
+	public String getProdusent() {
+		return produsent;
 	}
-	
-	public String getTittel(Film film) {
-		return film.tittel;
+
+	public String getTittel() {
+		return tittel;
 	}
-	
-	public int getAar(Film film) {
-		return film.aar;
+
+	public int getAar() {
+		return aar;
 	}
-	
-	public String getFilmselskar(Film film) {
-		return film.filmselskap;
+
+	public Sjanger getSjanger() {
+		return sjanger;
 	}
-	
-//	public enum	getSjanger(Film film) {
-//		return film.sjanger
-//	}
-	
-	public void setFilmNr(int filmNr) {
-		this.filmNr = filmNr;
-		
+
+	public String getSelskap() {
+		return selskap;
 	}
-	
-	public void setFilmskaper(String filmskaper) {
-		this.filmskaper = filmskaper;
-		
+
+	public void setFilmNr(int filmnr) {
+		this.filmNr = filmnr;
 	}
-	
+
+	public void setProdusent(String produsent) {
+		this.produsent = produsent;
+	}
+
 	public void setTittel(String tittel) {
-		this.tittel= tittel;
-		
+		this.tittel = tittel;
 	}
-	
+
 	public void setAar(int aar) {
 		this.aar = aar;
-		
-	}
-	
-	public void setFilmselskap(String filmskaper) {
-		this.filmselskap = filmskaper;
 	}
 
-
-//	public void	setSjanger(enum sjnager) {
-//	this.sjanger = sjanger;
-//}
-	
-	public boolean equals(Film film) { 
-		return getFilmNr(this) == getFilmNr(film);
+	public void setSelskap(String selskap) {
+		this.selskap = selskap;
 	}
-	
-	
+
+	public void setSjanger(Sjanger sjanger) {
+		this.sjanger = sjanger;
+	}
+
+	@Override
+	public boolean equals(Object film) {
+		return (((Film) film).getFilmNr() == filmNr);
+	}
+
+	@Override
+	public int hashCode() {
+		Integer temp = filmNr;
+		return temp.hashCode();
+	}
 }

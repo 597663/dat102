@@ -12,7 +12,7 @@ public class Meny {
 	 } 
 	  
 	 public void start(){ 
-	             // legg inn en del forhåndsdefinerte filmer 
+	  // legg inn en del forhåndsdefinerte filmer 
 	  // TODO 
 	 } 
 	 

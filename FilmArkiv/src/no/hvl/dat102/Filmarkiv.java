@@ -1,7 +1,6 @@
 package no.hvl.dat102;
 
 import no.hvl.dat102.adt.FilmarkivADT;
-import no.hvl.dat102.adt.Sjanger;
 import no.hvl.dat102.Film;
 
 public class Filmarkiv implements FilmarkivADT {
@@ -15,12 +14,13 @@ public class Filmarkiv implements FilmarkivADT {
 	@Override
 	public void visFilm(int nr) throws Exception {
 		for (int i = 0; i < antall(); i++) {
-			if (arkiv[i].equals(nr)) {
-				return;
+			if (nr == arkiv[i].filmNr) {
+				System.out.println(arkiv[i]);
 			}
 		}
 		throw new Exception("Film finnes ikke i arkivet");
 	}
+
 
 	@Override
 	public void leggTilFilm(Film nyFilm) {
@@ -41,10 +41,11 @@ public class Filmarkiv implements FilmarkivADT {
 	}
 
 	@Override
-	public boolean slettFilm(int filmnr) {
+	public boolean slettFilm(int filmNr) {
 		for (int i = 0; i > antall; i++) {
-			if (arkiv[i].equals(filmnr)) {
-				arkiv[i] = null;
+			if (filmNr == arkiv[i].filmNr) {
+				arkiv[i] = arkiv[antall - 1];
+				arkiv[antall - 1] = null;
 				antall--;
 				return true;
 			}
@@ -54,35 +55,31 @@ public class Filmarkiv implements FilmarkivADT {
 
 	@Override
 	public Film[] soekTittel(String delstreng) {
-		// TODO Auto-generated method stub
-		return null;
+		Film[] resultat = new Film[antall];
+		int j = 0;
+		for (int i = 0; i < antall; i++) {
+			if (arkiv[i].getTittel().contains(delstreng)) {
+				resultat[j] = arkiv[i];
+				j++;
+			}
+		}
+		return resultat;
 	}
 
 	@Override
 	public int antall(Sjanger sjanger) {
-		// TODO Auto-generated method stub
-		return 0;
+		int antallSjanger = 0;
+		for (int i = 0; i < antall; i++) {
+			if (arkiv[i].getSjanger().equals(sjanger)) {
+				antallSjanger++;
+			}
+		}
+		return antallSjanger;
 	}
 
 	@Override
 	public int antall() {
 		return antall;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		return ((Object)this).equals(obj);
-		}
-
-	public boolean equals(Film film) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public int hashCode(Film film) {
-		Integer temp = film.getFilmNr(film);
-		return temp.hashCode();
 	}
 
 }
