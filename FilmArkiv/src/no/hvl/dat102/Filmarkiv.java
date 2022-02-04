@@ -82,4 +82,10 @@ public class Filmarkiv implements FilmarkivADT {
 		return antall;
 	}
 
+	@Override
+	public Film[] soekProdusent(String delstreng) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
