@@ -130,7 +130,6 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 
 	@Override
 	public boolean equals(Object ny) {
-		// TODO
 		if (this == ny) {
 			return true;
 		}
