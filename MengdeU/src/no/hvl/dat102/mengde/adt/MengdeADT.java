@@ -53,7 +53,7 @@ public interface MengdeADT<T> {
 	boolean inneholder(T element);
 
 	/**
-	 * Tester om this-mengden og parameteren inneholder nï¿½yaktig de samme
+	 * Tester om this-mengden og parameteren inneholder nøyaktig de samme
 	 * elementene
 	 * 
 	 * @param m2 er  mengden som testes
