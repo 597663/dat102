@@ -159,7 +159,17 @@ public abstract class ListeADTTest {
 	 */
 	@Test
 	public final void leggTilFjernErTom() {
-		// ...Fyll ut. Legg inn elementer og fjern de
+		liste.leggTil(e1);
+		liste.leggTil(e2);
+		liste.leggTil(e3);
+		liste.leggTil(e4);
+		liste.leggTil(e5);
+		liste.fjern(e1);
+		liste.fjern(e2);
+		liste.fjern(e3);
+		liste.fjern(e4);
+		liste.fjern(e5);
+		assertTrue(liste.erTom());
 	}
 
 	/**

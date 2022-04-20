@@ -21,12 +21,10 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 
 	@Override
 	public T fjernSiste() {
-		if (erTom())
+		if (erTom()) {
 			throw new EmptyCollectionException("ordnet liste");
-
-		T resultat = null;
-		// ... Fyll ut
-		return resultat;
+		}
+		return fjern(siste());
 	}
 
 	@Override
@@ -34,9 +32,7 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		if (erTom())
 			throw new EmptyCollectionException("ordnet liste");
 
-		T resultat = null;
-		// ... Fyll ut
-		return resultat;
+		return fjern(foerste());
 	}
 
 	@Override
@@ -44,19 +40,15 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		if (erTom())
 			throw new EmptyCollectionException("ordnet liste");
 
-		T resultat = liste[0];
-		return resultat;
+		return liste[0];
 	}
 
 	@Override
 	public T siste() {
-		if (erTom())
+		if (erTom()) {
 			throw new EmptyCollectionException("ordnet liste");
-		
-		T resultat = null;
-		// ...Fyll ut
-
-		return resultat;
+		}
+		return liste[bak];
 	}
 
 	@Override
@@ -71,8 +63,23 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 
 	@Override
 	public void leggTil(T element) {
+		int i = 0;
+		if (bak == liste.length) {
+			utvid();
+		}
+		if (erTom()) {
+			liste[bak] = element;
+		} else {
+			while (i < bak && element.compareTo(liste[i]) > 0) {
+				i++;
+			}
+			for (int j = bak; j > i; j--) {
+				liste[j] = liste[j - 1];
+			}
+			liste[i] = element;
 
-		// ...Fyll ut
+		}
+		bak++;
 	}
 
 	@Override
@@ -82,15 +89,22 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 
 	@Override
 	public T fjern(T element) {
-		// ...Fyll ut
-		return element;
-
+		T resultat = null;
+		if (inneholder(element)) {
+			resultat = liste[finn(element)];
+			for (int i = finn(element); i < bak; i++) {
+				liste[i] = liste[i + 1];
+			}
+			bak--;
+		}
+		return resultat;
 	}
 
 	private int finn(T el) {
-		int i = 0, resultat = IKKE_FUNNET;
-		// ...Fyll ut
-		return resultat;
+		for (int i = 0; i < bak; i++)
+			if (liste[i].equals(el))
+				return i;
+		return IKKE_FUNNET;
 	}
 
 	public String toString() {

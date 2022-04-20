@@ -9,7 +9,7 @@ import no.hvl.dat102.exceptions.EmptyCollectionException;
  */
 public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeADT<T> {
 	private int antall;
-	private LinearNode<T> foerste, siste;
+	private LinearNode<T> foerste, siste, denne;
 
 	/**
 	 * Lager en ny tom liste.
@@ -24,9 +24,10 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 	public T fjernFoerste() {
 		if (erTom())
 			throw new EmptyCollectionException("ordnet liste");
+		T resultat = foerste.getElement();
 
-		T resultat = null;
-		// ...Fyll ut
+		foerste = foerste.getNeste();
+		antall--;
 		return resultat;
 	}
 
@@ -35,8 +36,18 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		if (erTom())
 			throw new EmptyCollectionException("ordnet liste");
 
-		T resultat = null;
-		// ...Fyll ut
+		T resultat = siste.getElement();
+		if (foerste == siste) {
+			siste = null;
+			antall--;
+			return resultat;
+		}
+		denne = foerste;
+		while (siste != denne.getNeste()) {
+			denne = denne.getNeste();
+		}
+		siste = denne;
+		antall--;
 		return resultat;
 	}
 
@@ -53,7 +64,7 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 	@Override
 	public T siste() {
 		if (erTom())
-			throw new EmptyCollectionException("ordnet liste");
+			return null;
 
 		T resultat = siste.getElement();
 
@@ -72,8 +83,32 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 
 	@Override
 	public void leggTil(T element) {
-
-		// ...Fyll ut
+		LinearNode<T> forrige = null, denne = foerste, ny = new LinearNode<T>(element);
+		if (erTom()) {
+			foerste = ny;
+			siste = ny;
+			antall++;
+			return;
+		}
+		if (element.compareTo(foerste.getElement()) < 0) {
+			ny.setNeste(foerste);
+			foerste = ny;
+			antall++;
+			return;
+		}
+		if (element.compareTo(siste.getElement()) > 0) {
+			siste.setNeste(ny);
+			siste = ny;
+			antall++;
+			return;
+		}
+		while (element.compareTo(denne.getElement()) > 0) {
+			forrige = denne;
+			denne = denne.getNeste();
+		}
+		forrige.setNeste(ny);
+		ny.setNeste(denne);
+		antall++;
 	}
 
 	@Override
